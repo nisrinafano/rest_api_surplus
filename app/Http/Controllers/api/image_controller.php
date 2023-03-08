@@ -5,6 +5,7 @@ namespace App\Http\Controllers\api;
 use App\Helpers\api_formatter;
 use App\Http\Controllers\Controller;
 use App\Models\image;
+use Exception;
 use Illuminate\Http\Request;
 
 class image_controller extends Controller
@@ -21,5 +22,30 @@ class image_controller extends Controller
 
         if ($image) return api_formatter::create_api(200, 'Success', $image);
         else return api_formatter::create_api(400, 'Data not found');
+    }
+
+    public function store(Request $request) {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'file' => 'required',
+                'enable' => 'required'
+            ]);
+
+            $image = image::create([
+                'name' => $request->name,
+                'file' => $request->file,
+                'enable' => $request->enable
+            ]);
+
+            // show the inserted data
+            $new_image = image::find($image->id);
+
+            if ($new_image) return api_formatter::create_api(200, 'Success', $new_image);
+            else return api_formatter::create_api(400, 'Data not inserted');
+
+        } catch (Exception $error) {
+            return api_formatter::create_api(400, 'Failed');
+        }
     }
 }
