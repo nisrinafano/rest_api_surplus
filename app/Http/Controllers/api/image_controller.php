@@ -48,4 +48,31 @@ class image_controller extends Controller
             return api_formatter::create_api(400, 'Failed');
         }
     }
+
+    public function update(Request $request, int $id) {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'file' => 'required',
+                'enable' => 'required'
+            ]);
+
+            $image = image::find($id);
+
+            $image->update([
+                'name' => $request->name,
+                'file' => $request->file,
+                'enable' => $request->enable
+            ]);
+
+            // show the updated data
+            $updated_image = image::find($image->id);
+
+            if ($updated_image) return api_formatter::create_api(200, 'Success', $updated_image);
+            else return api_formatter::create_api(400, 'Data not updated');
+
+        } catch (Exception $error) {
+            return api_formatter::create_api(400, 'Failed');
+        }
+    }
 }

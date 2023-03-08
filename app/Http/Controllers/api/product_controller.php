@@ -48,4 +48,31 @@ class product_controller extends Controller
             return api_formatter::create_api(400, 'Failed');
         }
     }
+
+    public function update(Request $request, int $id) {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'description' => 'required',
+                'enable' => 'required'
+            ]);
+
+            $product = product::find($id);
+
+            $product->delete([
+                'name' => $request->name,
+                'description' => $request->description,
+                'enable' => $request->enable
+            ]);
+
+            // show the updated data
+            $updated_product = product::find($product->id);
+
+            if ($updated_product) return api_formatter::create_api(200, 'Success', $updated_product);
+            else return api_formatter::create_api(400, 'Data not updated');
+
+        } catch (Exception $error) {
+            return api_formatter::create_api(400, 'Failed');
+        }
+    }
 }
