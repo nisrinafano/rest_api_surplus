@@ -59,7 +59,7 @@ class product_controller extends Controller
 
             $product = product::find($id);
 
-            $product->delete([
+            $product->update([
                 'name' => $request->name,
                 'description' => $request->description,
                 'enable' => $request->enable
@@ -74,5 +74,14 @@ class product_controller extends Controller
         } catch (Exception $error) {
             return api_formatter::create_api(400, 'Failed');
         }
+    }
+
+    public function destroy(int $id) {
+        $product = product::find($id);
+
+        $deleted_product = $product->delete();
+
+        if ($deleted_product) return api_formatter::create_api(200, 'Success');
+        else return api_formatter::create_api(400, 'Data not deleted');
     }
 }

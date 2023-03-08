@@ -61,4 +61,13 @@ class product_image_controller extends Controller
             return api_formatter::create_api(400, 'Failed');
         }
     }
+
+    public function destroy(int $product_id, int $image_id) {
+        $product_image = product_image::where('product_id', $product_id)->where('image_id', $image_id);
+            
+        $deleted_product_image = $product_image->delete();
+
+        if ($deleted_product_image) return api_formatter::create_api(200, 'Success');
+        else return api_formatter::create_api(400, 'Data not deleted');
+    }
 }

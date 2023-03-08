@@ -60,4 +60,13 @@ class category_product_controller extends Controller
             return api_formatter::create_api(400, 'Failed');
         }
     }
+
+    public function destroy(int $category_id, int $product_id) {
+        $category_product = category_product::where('category_id', $category_id)->where('product_id', $product_id);
+        
+        $deleted_category_product = $category_product->delete();
+
+        if ($deleted_category_product) return api_formatter::create_api(200, 'Success');
+        else return api_formatter::create_api(400, 'Data not deleted');
+    }
 }

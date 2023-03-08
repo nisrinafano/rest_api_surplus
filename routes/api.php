@@ -28,25 +28,30 @@ Route::get('category', [category_controller::class, 'index']);
 Route::get('category/{id}', [category_controller::class, 'show']);
 Route::post('category/add', [category_controller::class, 'store']);
 Route::put('category/update/{id}', [category_controller::class, 'update']);
+Route::delete('category/delete/{id}', [category_controller::class, 'destroy']);
 
 // product
 Route::get('product', [product_controller::class, 'index']);
 Route::get('product/{id}', [product_controller::class, 'show']);
 Route::post('product/add', [product_controller::class, 'store']);
 Route::put('product/update/{id}', [product_controller::class, 'update']);
+Route::delete('product/delete/{id}', [product_controller::class, 'destroy']);
 
 // category_product
 Route::get('category_product', [category_product_controller::class, 'index']);
 Route::post('category_product/add', [category_product_controller::class, 'store']);
 Route::put('category_product/update/{category_id}/{product_id}', [category_product_controller::class, 'update']);
+Route::delete('category_product/delete/{category_id}/{product_id}', [category_product_controller::class, 'destroy']);
 
 // image
 Route::get('image', [image_controller::class, 'index']);
 Route::get('image/{id}', [image_controller::class, 'show']);
 Route::post('image/add', [image_controller::class, 'store']);
 Route::put('image/update/{id}', [image_controller::class, 'update']);
+Route::delete('image/delete/{id}', [image_controller::class, 'destroy']);
 
 // product_image
 Route::get('product_image', [product_image_controller::class, 'index']);
 Route::post('product_image/add', [product_image_controller::class, 'store']);
 Route::put('product_image/update/{product_id}/{image_id}', [product_image_controller::class, 'update']);
+Route::delete('product_image/delete/{product_id}/{image_id}', [product_image_controller::class, 'destroy']);

@@ -75,4 +75,13 @@ class image_controller extends Controller
             return api_formatter::create_api(400, 'Failed');
         }
     }
+
+    public function destroy(int $id) {
+        $image = image::find($id);
+
+        $deleted_image = $image->delete();
+
+        if ($deleted_image) return api_formatter::create_api(200, 'Success');
+        else return api_formatter::create_api(400, 'Data not deleted');
+    }
 }

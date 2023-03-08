@@ -71,4 +71,13 @@ class category_controller extends Controller
             return api_formatter::create_api(400, 'Failed');
         }
     }
+
+    public function destroy(int $id) {
+        $category = category::find($id);
+
+        $deleted_category = $category->delete();
+
+        if ($deleted_category) return api_formatter::create_api(200, 'Success');
+        else return api_formatter::create_api(400, 'Data not deleted');
+    }
 }
