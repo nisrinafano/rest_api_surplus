@@ -25,15 +25,18 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 // category
 Route::get('category', [category_controller::class, 'index']);
+Route::get('category/{id}', [category_controller::class, 'show']);
 
 // product
 Route::get('product', [product_controller::class, 'index']);
+Route::get('product/{id}', [product_controller::class, 'show']);
 
 // category_product
 Route::get('category_product', [category_product_controller::class, 'index']);
 
 // image
 Route::get('image', [image_controller::class, 'index']);
+Route::get('image/{id}', [image_controller::class, 'show']);
 
 // product_image
 Route::get('product_image', [product_image_controller::class, 'index']);

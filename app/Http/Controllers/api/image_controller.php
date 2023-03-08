@@ -15,4 +15,11 @@ class image_controller extends Controller
         if ($image) return api_formatter::create_api(200, 'Success', $image);
         else return api_formatter::create_api(400, 'Data not found');
     }
+
+    public function show($id) {
+        $image = image::find($id);
+
+        if ($image) return api_formatter::create_api(200, 'Success', $image);
+        else return api_formatter::create_api(400, 'Data not found');
+    }
 }

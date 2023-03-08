@@ -15,4 +15,11 @@ class category_controller extends Controller
         if ($category) return api_formatter::create_api(200, 'Success', $category);
         else return api_formatter::create_api(400, 'Data not found');
     }
+
+    public function show($id) {
+        $category = category::find($id);
+
+        if ($category) return api_formatter::create_api(200, 'Success', $category);
+        else return api_formatter::create_api(400, 'Data not found');
+    }
 }

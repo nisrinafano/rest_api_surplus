@@ -15,4 +15,11 @@ class product_controller extends Controller
         if ($product) return api_formatter::create_api(200, 'Success', $product);
         else return api_formatter::create_api(400, 'Data not found');
     }
+
+    public function show($id) {
+        $product = product::find($id);
+
+        if ($product) return api_formatter::create_api(200, 'Success', $product);
+        else return api_formatter::create_api(400, 'Data not found');
+    }
 }
