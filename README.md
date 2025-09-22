@@ -1,6 +1,6 @@
-# Coding Challenge Surplus
+# Coding Challenge Rest API
 
-This project is made by Nisrina Fadhilah Fano as a coding challenge for the recruitment process at Surplus as a Backend Developer.
+This project is made by Nisrina Fadhilah Fano as a coding challenge.
 
 <b>Framework: Laravel 8.6.12</b>
 
